@@ -1,0 +1,65 @@
+# if we want to search the certain user this html file is used
+{% extends 'base.html'%}
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex" method="POST" action="{% url 'adminpage' %}">
+      {% csrf_token %}
+      <button class="btn btn-outline-success" type="submit">Back</button>
+    </form>
+
+    <!--<a href="{% url 'add_user' %}" class="btn btn-secondary text secondary px-0" class="btn text secondary px-0">Logout</a>--->
+    <!--<a class="navbar-brand">Admin Panel</a>--->
+    <form class="d-flex" method="GET" action="{% url 'search' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" name="query" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div>
+    <h1 style="text-align: center;">Search List</h1>
+</div>
+<div class="col-md-8 m-auto mt-3">
+<table class="table ">
+    <thead>
+      <tr>
+       <th>No.</th>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th>Is Superuser</th>
+        <th scope="col">  <a href="{% url 'add_user' %}" class="btn btn-secondary text secondary px-0" class="btn text secondary px-0">Add User</a></th>
+        <th scope="col"></th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+
+        {% for i in user_list %}
+        <tr>
+          <th>{{forloop.counter}}</th>
+            <th scope="row">{{i.id}}</th>
+            <td>{{i.username}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.is_superuser}}</td>
+            <td><a href="{% url 'user_insert' i.id %}" class="btn text secondary px-0">
+              <i class="far fa-edit fa-lg"></i>
+
+
+            </a></td>
+           <td>
+             <a href="{% url 'admin_delete' i.id %}" class="btn text secondary px-0" class="btn text secondary px-0">
+
+
+              <i class="fa-solid fa-trash"></i></a>
+           </td>
+          </tr>
+        {% endfor%}
+
+    </tbody>
+  </table>
+  </div>
+  {% endblock %}
