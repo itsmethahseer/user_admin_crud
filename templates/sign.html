@@ -145,17 +145,17 @@ button{
         <h3>Signup Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" id="username">
+        <input type="text" placeholder="Username" name="username" id="username" required>
 
         <label for="email">Email</label>
-        <input type="email" placeholder="Email or Phone" name="email" id="email">
+        <input type="email" placeholder="Email or Phone" name="email" id="email" required>
 
         <label for="password1">Password</label>
-        <input type="password" placeholder="Password" id="password1" name="password1">
+        <input type="password" placeholder="Password" id="password1" name="password1" required>
 
 
         <label for="password2">Conform Password</label>
-        <input type="password" placeholder="Confrom Password" id="password2" name="password2">
+        <input type="password" placeholder="Confrom Password" id="password2" name="password2" required>
         <button type="submit">Signup</button>
 
        <a href="{% url 'login' %}" >i have already account</a>
