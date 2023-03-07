@@ -100,9 +100,11 @@ def admin_logout(request):
     return redirect('adminlogin')
 # for updating the username,passwords
 def user_insert(request,id):
+    # Here  i save the user_id of the respective user in 'user'.
     user=User.objects.get(id=id)
     form=user_form(instance=user)
     if request.method == 'POST' :
+         # here the updation will occur.
         form=user_form(request.POST, instance=user)
         print('>>>>>>>>>>>>>>')
         if form.is_valid():
@@ -123,7 +125,9 @@ def add_user(request):
         email = request.POST['email']
         username = request.POST['username']
         password = request.POST['password']
-
+# if we want to add users details first it stores in the variables such as email,username,password and it filters for
+        # checking it is already present in the list. if it will present printed as 'username already present'
+        # otherwise it will create a user and save it. and redirect into adminlogin page.
         # if password == confirm:
         if User.objects.filter(username=username).exists():
 
@@ -144,6 +148,9 @@ def add_user(request):
 
 
 @login_required(login_url='adminlogin')
+# first we pass the required datas id. if it is in query , it Filters first and then stores in a variable from the
+# dictionary 'user_list', then see the corresponding user in a table. if there is no such type of data it will move to
+# admin page
 def search(request):
     if request.method == 'GET':
         print("search")
