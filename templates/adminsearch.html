@@ -12,7 +12,7 @@
     <!--<a class="navbar-brand">Admin Panel</a>--->
     <form class="d-flex" method="GET" action="{% url 'search' %}">
       {% csrf_token %}
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control me-2" type="search" required placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" name="query" type="submit">Search</button>
     </form>
   </div>
